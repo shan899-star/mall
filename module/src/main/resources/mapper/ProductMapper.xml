@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiubaiji.mall.module.mapper.ProductMapper">
+    <insert id="insert" parameterType="com.jiubaiji.mall.module.entity.Product">
+        insert into product(images, price, title,description,create_time, update_time, is_deleted)
+        VALUES (#{product.images}, #{product.price}, #{product.title}, #{product.description},
+                #{product.createTime}, #{product.updateTime}, #{product.isDeleted})
+    </insert>
+    <update id="update" parameterType="com.jiubaiji.mall.module.entity.Product">
+        update product set images = #{product.images},
+                           price  = #{product.price},
+                           title  = #{product.title},
+                           description=#{product.description},
+                           update_time = #{product.updateTime} where id = #{product.id}
+
+    </update>
+</mapper>
