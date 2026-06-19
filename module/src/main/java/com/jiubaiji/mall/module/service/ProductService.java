@@ -1,15 +1,9 @@
 package com.jiubaiji.mall.module.service;
 
-import com.jiubaiji.mall.domain.ProductInfoVo;
-import com.jiubaiji.mall.domain.ProductListFeedVo;
-import com.jiubaiji.mall.domain.ProductListVo;
 import com.jiubaiji.mall.module.entity.Product;
 import com.jiubaiji.mall.module.mapper.ProductMapper;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -20,34 +14,18 @@ public class ProductService {
         this.productMapper = productMapper;
     }
 
-    public ProductInfoVo getById(Long id) {
+    public Product detail(Long id) {
         Product product = productMapper.getById(id);
-        ProductInfoVo productInfoVo =new ProductInfoVo()
-                .setId(product.getId())
-                .setTitle(product.getTitle())
-                .setPrice(product.getPrice())
-                .setDescription(product.getDescription());
-        List<String> images = Arrays.asList(product.getImages().split("\\$"));
-        productInfoVo.setImages(images);
-        return productInfoVo;
+        return product;
     }
 
-    public ProductListVo getList() {
+    public List<Product> getList() {
         List<Product> products = productMapper.getList();
-        List<ProductListFeedVo> list = new ArrayList<>();
-        for (Product product : products) {
-            ProductListFeedVo vo = new ProductListFeedVo()
-                    .setId(product.getId())
-                    .setImage(product.getImages().split("\\$")[0])
-                    .setTitle(product.getTitle())
-                    .setPrice(product.getPrice());
-            list.add(vo);
 
-        }
-        return new ProductListVo().setList(list);
+        return products;
     }
 
-    public int createProduct(String images, BigDecimal price, String title, String description) {
+    public int createProduct(String images, Float price, String title, String description) {
         int timestamp = (int) (System.currentTimeMillis() / 1000);
         Product product = new Product();
         product.setImages(images);
@@ -60,7 +38,7 @@ public class ProductService {
         return productMapper.insert(product);
     }
 
-    public int updateProduct(Long id, String images, BigDecimal price, String title, String description) {
+    public int updateProduct(Long id, String images, Float price, String title, String description) {
         int timestamp = (int) (System.currentTimeMillis() / 1000);
         Product product = new Product();
         product.setId(id);

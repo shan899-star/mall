@@ -10,7 +10,7 @@ import java.util.List;
 
 @Mapper
 public interface ProductMapper {
-    @Select("select * from product where id =#{id}  and is_deleted= 0")
+
     Product getById(@Param("id") Long id);
 
     @Select("select  * from product where is_deleted =0;")

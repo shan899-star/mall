@@ -1,9 +1,10 @@
 package com.jiubaiji.mall.module.entity;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
-import java.math.BigDecimal;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,7 +13,7 @@ public class Product {
     private Long id;
     private String images;
     private String title;
-    private BigDecimal price;
+    private Float price;
     private String description;
     private Integer createTime;
     private Integer updateTime;

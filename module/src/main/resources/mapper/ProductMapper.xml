@@ -4,16 +4,32 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jiubaiji.mall.module.mapper.ProductMapper">
     <insert id="insert" parameterType="com.jiubaiji.mall.module.entity.Product">
-        insert into product(images, price, title,description,create_time, update_time, is_deleted)
+        insert into product(images, price, title, description, create_time, update_time, is_deleted)
         VALUES (#{product.images}, #{product.price}, #{product.title}, #{product.description},
                 #{product.createTime}, #{product.updateTime}, #{product.isDeleted})
     </insert>
     <update id="update" parameterType="com.jiubaiji.mall.module.entity.Product">
-        update product set images = #{product.images},
-                           price  = #{product.price},
-                           title  = #{product.title},
-                           description=#{product.description},
-                           update_time = #{product.updateTime} where id = #{product.id}
+        update product
+        set images      = #{product.images},
+            price       = #{product.price},
+            title       = #{product.title},
+            description=#{product.description},
+            update_time = #{product.updateTime}
+        where id = #{product.id}
 
     </update>
+    <select id="getById" resultType="com.jiubaiji.mall.module.entity.Product">
+        select
+            id,
+            images,
+            title,
+            price,
+            description,
+            create_time,
+            update_time,
+            is_deleted
+        from product
+        where id = #{id}
+          and is_deleted = 0
+    </select>
 </mapper>

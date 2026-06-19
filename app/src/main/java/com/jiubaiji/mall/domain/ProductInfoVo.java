@@ -3,13 +3,15 @@ package com.jiubaiji.mall.domain;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.math.BigDecimal;
+
+import java.util.List;
 
 @Data
 @Accessors(chain = true)
-public class ProductListFeedVo {
+public class ProductInfoVo {
     private Long id;
-    private String image;
+    private List<String> images;
     private String title;
-    private BigDecimal price;
+    private Float price;
+    private String description;
 }
